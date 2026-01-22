@@ -1,14 +1,20 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import * as argon from 'argon2';
-import { AuthDto } from './dto';
+import { SigninDto, SignupDto } from './dto';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwt: JwtService,
+    private config: ConfigService,
+  ) {}
 
-  async signin(dto: AuthDto) {
+  async signin(dto: SigninDto) {
     const user = await this.prisma.user.findUnique({
       where: {
         email: dto.email,
@@ -25,13 +31,10 @@ export class AuthService {
       throw new ForbiddenException('Credentials incorrect');
     }
 
-    // 使用解構賦值排除 hash，剩餘欄位存入 result
-    const { hash: _, ...result } = user;
-
-    return result;
+    return this.signToken(user);
   }
 
-  async signup(dto: AuthDto) {
+  async signup(dto: SignupDto) {
     try {
       const hash = await argon.hash(dto.password);
 
@@ -39,14 +42,13 @@ export class AuthService {
         data: {
           name: dto.name,
           email: dto.email,
+          mobile: dto.mobile,
+          address: dto.address,
           hash,
         },
       });
 
-      // 使用解構賦值排除 hash，剩餘欄位存入 result
-      const { hash: _, ...result } = user;
-
-      return result;
+      return this.signToken(user);
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
@@ -56,5 +58,24 @@ export class AuthService {
 
       throw error;
     }
+  }
+
+  async signToken(user: any): Promise<{ access_token: string }> {
+    const payload = {
+      sub: user.id,
+      name: user.name,
+      email: user.email,
+      mobile: user.mobile,
+      address: user.address,
+    };
+
+    const token = await this.jwt.signAsync(payload, {
+      expiresIn: this.config.get('JWT_EXPIRES_IN'),
+      secret: this.config.get('JWT_SECRET'),
+    });
+
+    return {
+      access_token: token,
+    };
   }
 }

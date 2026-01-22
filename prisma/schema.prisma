@@ -21,7 +21,7 @@ model User {
 
   email     String    @unique
   hash      String
-  name      String?
-
-  @@map("users")
+  name      String
+  mobile    String
+  address   String
 }
