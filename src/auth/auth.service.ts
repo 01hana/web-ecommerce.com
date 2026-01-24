@@ -15,7 +15,7 @@ export class AuthService {
   ) {}
 
   async signin(dto: SigninDto) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.customer.findUnique({
       where: {
         email: dto.email,
       },
@@ -38,7 +38,7 @@ export class AuthService {
     try {
       const hash = await argon.hash(dto.password);
 
-      const user = await this.prisma.user.create({
+      const user = await this.prisma.customer.create({
         data: {
           name: dto.name,
           email: dto.email,
@@ -62,7 +62,7 @@ export class AuthService {
 
   async signToken(user: any): Promise<{ access_token: string }> {
     const payload = {
-      sub: user.id,
+      uuid: user.id,
       name: user.name,
       email: user.email,
       mobile: user.mobile,
