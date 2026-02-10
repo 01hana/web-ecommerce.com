@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Customer: 'Customer',
   products: 'products',
-  users: 'users'
+  users: 'users',
+  categories: 'categories'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "products" | "users"
+    modelProps: "customer" | "products" | "users" | "categories"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    categories: {
+      payload: Prisma.$categoriesPayload<ExtArgs>
+      fields: Prisma.categoriesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.categoriesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.categoriesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>
+        }
+        findFirst: {
+          args: Prisma.categoriesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.categoriesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>
+        }
+        findMany: {
+          args: Prisma.categoriesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>[]
+        }
+        create: {
+          args: Prisma.categoriesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>
+        }
+        createMany: {
+          args: Prisma.categoriesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.categoriesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>[]
+        }
+        delete: {
+          args: Prisma.categoriesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>
+        }
+        update: {
+          args: Prisma.categoriesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>
+        }
+        deleteMany: {
+          args: Prisma.categoriesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.categoriesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.categoriesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>[]
+        }
+        upsert: {
+          args: Prisma.categoriesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$categoriesPayload>
+        }
+        aggregate: {
+          args: Prisma.CategoriesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCategories>
+        }
+        groupBy: {
+          args: Prisma.categoriesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CategoriesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.categoriesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CategoriesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -687,11 +762,12 @@ export const ProductsScalarFieldEnum = {
   updatedAt: 'updatedAt',
   name: 'name',
   price: 'price',
-  image: 'image',
-  category: 'category',
   status: 'status',
   description: 'description',
-  stock: 'stock'
+  stock: 'stock',
+  cover: 'cover',
+  images: 'images',
+  categoryId: 'categoryId'
 } as const
 
 export type ProductsScalarFieldEnum = (typeof ProductsScalarFieldEnum)[keyof typeof ProductsScalarFieldEnum]
@@ -710,6 +786,17 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const CategoriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoriesScalarFieldEnum = (typeof CategoriesScalarFieldEnum)[keyof typeof CategoriesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -902,6 +989,7 @@ export type GlobalOmitConfig = {
   customer?: Prisma.CustomerOmit
   products?: Prisma.productsOmit
   users?: Prisma.usersOmit
+  categories?: Prisma.categoriesOmit
 }
 
 /* Types for Logging */

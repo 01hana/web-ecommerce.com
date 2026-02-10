@@ -32,3 +32,8 @@ export type products = Prisma.productsModel
  * 
  */
 export type users = Prisma.usersModel
+/**
+ * Model categories
+ * 
+ */
+export type categories = Prisma.categoriesModel
