@@ -268,7 +268,7 @@ export type categoriesCreateInput = {
   name: string
   status?: boolean
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   products?: Prisma.productsCreateNestedManyWithoutCategoriesInput
 }
 
@@ -277,7 +277,7 @@ export type categoriesUncheckedCreateInput = {
   name: string
   status?: boolean
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   products?: Prisma.productsUncheckedCreateNestedManyWithoutCategoriesInput
 }
 
@@ -303,7 +303,7 @@ export type categoriesCreateManyInput = {
   name: string
   status?: boolean
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
 }
 
 export type categoriesUpdateManyMutationInput = {
@@ -376,7 +376,7 @@ export type categoriesCreateWithoutProductsInput = {
   name: string
   status?: boolean
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
 }
 
 export type categoriesUncheckedCreateWithoutProductsInput = {
@@ -384,7 +384,7 @@ export type categoriesUncheckedCreateWithoutProductsInput = {
   name: string
   status?: boolean
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
 }
 
 export type categoriesCreateOrConnectWithoutProductsInput = {

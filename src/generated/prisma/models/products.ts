@@ -358,7 +358,7 @@ export type productsScalarWhereWithAggregatesInput = {
 
 export type productsCreateInput = {
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   name: string
   price: number
   status?: boolean
@@ -373,7 +373,7 @@ export type productsCreateInput = {
 export type productsUncheckedCreateInput = {
   id?: number
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   name: string
   price: number
   status?: boolean
@@ -417,7 +417,7 @@ export type productsUncheckedUpdateInput = {
 export type productsCreateManyInput = {
   id?: number
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   name: string
   price: number
   status?: boolean
@@ -609,7 +609,7 @@ export type productsUncheckedUpdateManyWithoutCategoriesNestedInput = {
 
 export type productsCreateWithoutCategoriesInput = {
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   name: string
   price: number
   status?: boolean
@@ -623,7 +623,7 @@ export type productsCreateWithoutCategoriesInput = {
 export type productsUncheckedCreateWithoutCategoriesInput = {
   id?: number
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   name: string
   price: number
   status?: boolean
@@ -681,7 +681,7 @@ export type productsScalarWhereInput = {
 export type productsCreateManyCategoriesInput = {
   id?: number
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   name: string
   price: number
   status?: boolean

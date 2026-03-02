@@ -272,7 +272,7 @@ export type usersScalarWhereWithAggregatesInput = {
 export type usersCreateInput = {
   id?: string
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   email: string
   hash: string
   name: string
@@ -284,7 +284,7 @@ export type usersCreateInput = {
 export type usersUncheckedCreateInput = {
   id?: string
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   email: string
   hash: string
   name: string
@@ -320,7 +320,7 @@ export type usersUncheckedUpdateInput = {
 export type usersCreateManyInput = {
   id?: string
   created_at?: Date | string
-  updated_at: Date | string
+  updated_at?: Date | string
   email: string
   hash: string
   name: string

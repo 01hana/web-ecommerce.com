@@ -11,7 +11,7 @@ datasource db {
 model Customer {
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
-  updated_at DateTime
+  updated_at DateTime @updatedAt
   email      String   @unique
   hash       String
   name       String
@@ -24,7 +24,7 @@ model Customer {
 model products {
   id          Int        @id @default(autoincrement())
   created_at  DateTime   @default(now())
-  updated_at  DateTime
+  updated_at  DateTime   @updatedAt
   name        String     @unique
   price       Float
   status      Boolean    @default(true)
@@ -40,7 +40,7 @@ model products {
 model users {
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
-  updated_at DateTime
+  updated_at DateTime @updatedAt
   email      String   @unique
   hash       String
   name       String
@@ -54,7 +54,7 @@ model categories {
   name       String     @unique
   status     Boolean    @default(true)
   created_at DateTime   @default(now())
-  updated_at DateTime
+  updated_at DateTime   @updatedAt
   products   products[]
 }
 
