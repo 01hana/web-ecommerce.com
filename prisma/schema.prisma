@@ -9,22 +9,22 @@ datasource db {
 }
 
 model Customer {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  hash      String
-  name      String
-  mobile    String
-  address   String
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime
+  email      String   @unique
+  hash       String
+  name       String
+  mobile     String
+  address    String
 
   @@map("customers")
 }
 
 model products {
   id          Int        @id @default(autoincrement())
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime
+  created_at  DateTime   @default(now())
+  updated_at  DateTime
   name        String     @unique
   price       Float
   status      Boolean    @default(true)
@@ -33,26 +33,36 @@ model products {
   cover       String
   images      String[]
   categoryId  Int
+  number      String?    @unique
   categories  categories @relation(fields: [categoryId], references: [id])
 }
 
 model users {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-  email     String   @unique
-  hash      String
-  name      String
-  groups    String[]
-  status    Boolean  @default(true)
-  account   String   @unique
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime
+  email      String   @unique
+  hash       String
+  name       String
+  groups     String[]
+  status     Boolean  @default(true)
+  account    String   @unique
 }
 
 model categories {
-  id        Int        @id @default(autoincrement())
-  name      String     @unique
-  status    Boolean    @default(true)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime
-  products  products[]
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
+  status     Boolean    @default(true)
+  created_at DateTime   @default(now())
+  updated_at DateTime
+  products   products[]
+}
+
+model files {
+  id          Int      @id @default(autoincrement())
+  filename    String
+  path        String
+  mimetype    String
+  description String?
+  created_at  DateTime @default(now())
 }

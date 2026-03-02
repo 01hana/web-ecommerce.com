@@ -57,3 +57,8 @@ export type users = Prisma.usersModel
  * 
  */
 export type categories = Prisma.categoriesModel
+/**
+ * Model files
+ * 
+ */
+export type files = Prisma.filesModel

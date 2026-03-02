@@ -54,7 +54,8 @@ export const ModelName = {
   Customer: 'Customer',
   products: 'products',
   users: 'users',
-  categories: 'categories'
+  categories: 'categories',
+  files: 'files'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,8 +76,8 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const CustomerScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
   email: 'email',
   hash: 'hash',
   name: 'name',
@@ -89,8 +90,8 @@ export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typ
 
 export const ProductsScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
   name: 'name',
   price: 'price',
   status: 'status',
@@ -98,7 +99,8 @@ export const ProductsScalarFieldEnum = {
   stock: 'stock',
   cover: 'cover',
   images: 'images',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  number: 'number'
 } as const
 
 export type ProductsScalarFieldEnum = (typeof ProductsScalarFieldEnum)[keyof typeof ProductsScalarFieldEnum]
@@ -106,8 +108,8 @@ export type ProductsScalarFieldEnum = (typeof ProductsScalarFieldEnum)[keyof typ
 
 export const UsersScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
   email: 'email',
   hash: 'hash',
   name: 'name',
@@ -123,11 +125,23 @@ export const CategoriesScalarFieldEnum = {
   id: 'id',
   name: 'name',
   status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type CategoriesScalarFieldEnum = (typeof CategoriesScalarFieldEnum)[keyof typeof CategoriesScalarFieldEnum]
+
+
+export const FilesScalarFieldEnum = {
+  id: 'id',
+  filename: 'filename',
+  path: 'path',
+  mimetype: 'mimetype',
+  description: 'description',
+  created_at: 'created_at'
+} as const
+
+export type FilesScalarFieldEnum = (typeof FilesScalarFieldEnum)[keyof typeof FilesScalarFieldEnum]
 
 
 export const SortOrder = {
